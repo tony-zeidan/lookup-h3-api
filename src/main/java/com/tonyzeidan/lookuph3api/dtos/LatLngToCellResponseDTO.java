@@ -11,6 +11,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class LatLngToCellResponseDTO implements Serializable {
 
-    private String cellId;
+    private String cell;
 
 }

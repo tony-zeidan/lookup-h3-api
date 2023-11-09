@@ -2,11 +2,9 @@ package com.tonyzeidan.lookuph3api.services;
 
 import com.tonyzeidan.lookuph3api.dtos.CellToBoundaryResponseDTO;
 import com.tonyzeidan.lookuph3api.dtos.CellToLatLngResponseDTO;
-import com.tonyzeidan.lookuph3api.dtos.LatLngToCellRequestDTO;
 import com.tonyzeidan.lookuph3api.dtos.LatLngToCellResponseDTO;
 import com.uber.h3core.H3Core;
 import com.uber.h3core.util.LatLng;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -25,7 +23,7 @@ public class LookupH3Service {
     public LatLngToCellResponseDTO latLngToCell(Double lat, Double lng, Integer res) {
         String hexRes = this.h3CoreInstance.latLngToCellAddress(lat, lng, res);
         LatLngToCellResponseDTO latLngToCellResponseDTO = new LatLngToCellResponseDTO();
-        latLngToCellResponseDTO.setCellId(hexRes);
+        latLngToCellResponseDTO.setCell(hexRes);
         return latLngToCellResponseDTO;
     }
 

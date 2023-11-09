@@ -7,7 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("lookuph3")
+@RestController
+@RequestMapping("lookuph3")
 public class LookupH3Controller {
 
     private final LookupH3Service lookupH3Service;
