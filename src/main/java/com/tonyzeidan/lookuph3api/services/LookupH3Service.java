@@ -1,20 +1,30 @@
 package com.tonyzeidan.lookuph3api.services;
 
-import com.tonyzeidan.lookuph3api.dtos.CellToBoundaryResponseDTO;
-import com.tonyzeidan.lookuph3api.dtos.CellToLatLngResponseDTO;
-import com.tonyzeidan.lookuph3api.dtos.LatLngToCellResponseDTO;
+import com.tonyzeidan.lookuph3api.dtos.*;
+import com.uber.h3core.AreaUnit;
 import com.uber.h3core.H3Core;
 import com.uber.h3core.util.LatLng;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class LookupH3Service {
 
     private final H3Core h3CoreInstance;
+
+    private static final Map<String, AreaUnit> AREA_UNIT_MAPPING;
+
+    static {
+        AREA_UNIT_MAPPING = new HashMap<>();
+        AREA_UNIT_MAPPING.put("km2", AreaUnit.km2);
+        AREA_UNIT_MAPPING.put("m2", AreaUnit.m2);
+        AREA_UNIT_MAPPING.put("rads2", AreaUnit.rads2);
+    }
 
     public LookupH3Service() throws IOException {
         this.h3CoreInstance = H3Core.newInstance();
@@ -41,6 +51,27 @@ public class LookupH3Service {
         CellToBoundaryResponseDTO cellToBoundaryResponseDTO = new CellToBoundaryResponseDTO();
         cellToBoundaryResponseDTO.setBoundary(boundaryConvert);
         return cellToBoundaryResponseDTO;
+    }
+
+    public AreNeighborCellsResponseDTO areNeighborCells(String a, String b) {
+        Boolean areNeighbors = this.h3CoreInstance.areNeighborCells(a, b);
+        AreNeighborCellsResponseDTO areNeighborCellsResponseDTO = new AreNeighborCellsResponseDTO();
+        areNeighborCellsResponseDTO.setResult(areNeighbors);
+        return areNeighborCellsResponseDTO;
+    }
+
+    public CellAreaResponseDTO cellArea(String cell, String areaUnit) {
+        Double cellArea = this.h3CoreInstance.cellArea(cell, AREA_UNIT_MAPPING.get(areaUnit));
+        CellAreaResponseDTO cellAreaResponseDTO = new CellAreaResponseDTO();
+        cellAreaResponseDTO.setArea(cellArea);
+        return cellAreaResponseDTO;
+    }
+
+    public NumCellsResponseDTO numCells(Integer res) {
+        Long numCells = this.h3CoreInstance.getNumCells(res);
+        NumCellsResponseDTO numCellsResponseDTO = new NumCellsResponseDTO();
+        numCellsResponseDTO.setNumCells(numCells);
+        return numCellsResponseDTO;
     }
 
     private List<Double[]> latLngToList(List<LatLng> coords) {
