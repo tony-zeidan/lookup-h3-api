@@ -81,6 +81,13 @@ public class LookupH3Service {
         return isPentagonResponseDTO;
     }
 
+    public GetResolutionResponseDTO getResolution(String cell) {
+        Integer res = this.h3CoreInstance.getResolution(cell);
+        GetResolutionResponseDTO getResolutionResponseDTO = new GetResolutionResponseDTO();
+        getResolutionResponseDTO.setRes(res);
+        return getResolutionResponseDTO;
+    }
+
     private List<Double[]> latLngToList(List<LatLng> coords) {
         List<Double[]> coordsNew = new ArrayList<>(coords.size());
         for (LatLng latLng : coords) {

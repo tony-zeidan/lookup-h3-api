@@ -101,4 +101,16 @@ public class LookupH3Controller {
         IsPentagonResponseDTO isPentagonResponseDTO = this.lookupH3Service.isPentagon(isPentagonRequestDTO.getCell());
         return ResponseEntity.ok(isPentagonResponseDTO);
     }
+
+    @GetMapping("getResolution")
+    public ResponseEntity<GetResolutionResponseDTO> getResolutionMapping(@RequestParam String cell) {
+        GetResolutionResponseDTO getResolutionResponseDTO = this.lookupH3Service.getResolution(cell);
+        return ResponseEntity.ok(getResolutionResponseDTO);
+    }
+
+    @PostMapping("getResolution")
+    public ResponseEntity<GetResolutionResponseDTO> getResolutionMapping(@RequestBody GetResolutionRequestDTO getResolutionRequestDTO) {
+        GetResolutionResponseDTO getResolutionResponseDTO = this.lookupH3Service.getResolution(getResolutionRequestDTO.getCell());
+        return ResponseEntity.ok(getResolutionResponseDTO);
+    }
 }
