@@ -2,6 +2,7 @@ package com.tonyzeidan.lookuph3api.controllers;
 
 import com.tonyzeidan.lookuph3api.dtos.*;
 import com.tonyzeidan.lookuph3api.services.LookupH3Service;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("lookuph3")
+@Api(tags = "Main Controller", description = "REST controller for Uber H3 API")
 public class LookupH3Controller {
 
     private final LookupH3Service lookupH3Service;
