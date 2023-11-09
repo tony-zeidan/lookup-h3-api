@@ -53,4 +53,64 @@ public class LookupH3Controller {
         CellToBoundaryResponseDTO cellToBoundaryResponseDTO = this.lookupH3Service.cellToBoundary(cellToBoundaryRequestDTO.getCell());
         return ResponseEntity.ok(cellToBoundaryResponseDTO);
     }
+
+    @GetMapping("areNeighborCells")
+    public ResponseEntity<AreNeighborCellsResponseDTO> areNeighborCellsMapping(@RequestParam String a, @RequestParam String b) {
+        AreNeighborCellsResponseDTO areNeighborCellsResponseDTO = this.lookupH3Service.areNeighborCells(a, b);
+        return ResponseEntity.ok(areNeighborCellsResponseDTO);
+    }
+
+    @PostMapping("areNeighborCells")
+    public ResponseEntity<AreNeighborCellsResponseDTO> areNeighborCellsMapping(@RequestBody AreNeighborCellsRequestDTO areNeighborCellsRequestDTO) {
+        AreNeighborCellsResponseDTO areNeighborCellsResponseDTO = this.lookupH3Service.areNeighborCells(areNeighborCellsRequestDTO.getA(), areNeighborCellsRequestDTO.getB());
+        return ResponseEntity.ok(areNeighborCellsResponseDTO);
+    }
+
+    @GetMapping("cellArea")
+    public ResponseEntity<CellAreaResponseDTO> cellAreaMapping(@RequestParam String cell, @RequestParam String areaUnit) {
+        CellAreaResponseDTO cellAreaResponseDTO = this.lookupH3Service.cellArea(cell, areaUnit);
+        return ResponseEntity.ok(cellAreaResponseDTO);
+    }
+
+    @PostMapping("cellArea")
+    public ResponseEntity<CellAreaResponseDTO> cellAreaMapping(@RequestBody CellAreaRequestDTO cellAreaRequestDTO) {
+        CellAreaResponseDTO cellAreaResponseDTO = this.lookupH3Service.cellArea(cellAreaRequestDTO.getCell(), cellAreaRequestDTO.getAreaUnit());
+        return ResponseEntity.ok(cellAreaResponseDTO);
+    }
+
+    @GetMapping("numCells")
+    public ResponseEntity<NumCellsResponseDTO> numCellsMapping(@RequestParam Integer res) {
+        NumCellsResponseDTO numCellsResponseDTO = this.lookupH3Service.numCells(res);
+        return ResponseEntity.ok(numCellsResponseDTO);
+    }
+
+    @PostMapping("numCells")
+    public ResponseEntity<NumCellsResponseDTO> numCellsMapping(@RequestBody NumCellsRequestDTO numCellsRequestDTO) {
+        NumCellsResponseDTO numCellsResponseDTO = this.lookupH3Service.numCells(numCellsRequestDTO.getRes());
+        return ResponseEntity.ok(numCellsResponseDTO);
+    }
+
+    @GetMapping("isPentagon")
+    public ResponseEntity<IsPentagonResponseDTO> isPentagonMapping(@RequestParam String cell) {
+        IsPentagonResponseDTO isPentagonResponseDTO = this.lookupH3Service.isPentagon(cell);
+        return ResponseEntity.ok(isPentagonResponseDTO);
+    }
+
+    @PostMapping("isPentagon")
+    public ResponseEntity<IsPentagonResponseDTO> isPentagonMapping(@RequestBody IsPentagonRequestDTO isPentagonRequestDTO) {
+        IsPentagonResponseDTO isPentagonResponseDTO = this.lookupH3Service.isPentagon(isPentagonRequestDTO.getCell());
+        return ResponseEntity.ok(isPentagonResponseDTO);
+    }
+
+    @GetMapping("getResolution")
+    public ResponseEntity<GetResolutionResponseDTO> getResolutionMapping(@RequestParam String cell) {
+        GetResolutionResponseDTO getResolutionResponseDTO = this.lookupH3Service.getResolution(cell);
+        return ResponseEntity.ok(getResolutionResponseDTO);
+    }
+
+    @PostMapping("getResolution")
+    public ResponseEntity<GetResolutionResponseDTO> getResolutionMapping(@RequestBody GetResolutionRequestDTO getResolutionRequestDTO) {
+        GetResolutionResponseDTO getResolutionResponseDTO = this.lookupH3Service.getResolution(getResolutionRequestDTO.getCell());
+        return ResponseEntity.ok(getResolutionResponseDTO);
+    }
 }
