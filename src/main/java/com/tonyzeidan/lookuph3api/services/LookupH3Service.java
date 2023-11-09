@@ -74,6 +74,13 @@ public class LookupH3Service {
         return numCellsResponseDTO;
     }
 
+    public IsPentagonResponseDTO isPentagon(String cell) {
+        Boolean isPentagon = this.h3CoreInstance.isPentagon(cell);
+        IsPentagonResponseDTO isPentagonResponseDTO = new IsPentagonResponseDTO();
+        isPentagonResponseDTO.setIsPentagon(isPentagon);
+        return isPentagonResponseDTO;
+    }
+
     private List<Double[]> latLngToList(List<LatLng> coords) {
         List<Double[]> coordsNew = new ArrayList<>(coords.size());
         for (LatLng latLng : coords) {
